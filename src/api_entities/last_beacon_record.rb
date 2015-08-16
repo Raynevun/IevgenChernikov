@@ -1,4 +1,4 @@
-require '../bin/api_entities/requests'
+require '../src/api_entities/requests'
 require 'nokogiri'
 
 class LastBeaconRecord

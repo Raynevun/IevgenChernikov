@@ -1,5 +1,5 @@
-require '../bin/helpers'
-require '../bin/api_entities/last_beacon_record'
+require '../src/helpers'
+require '../src/api_entities/last_beacon_record'
 
 class GetLastRecordParseOutputValueAndCount
   helpers = Helpers.new
