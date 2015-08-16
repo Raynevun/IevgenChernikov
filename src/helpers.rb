@@ -99,4 +99,13 @@ class Helpers
     return all_outputs
   end
 
+  def stop_if_date_before_epoch_time(time)
+    if time < 1378395540
+      date = DateTime.strptime(time.to_s, '%s')
+      error = "You've selected #{date} date. Dates before 09/05/2013 11:39 a.m. are not supported. Please rerun script and enter valid dates"
+      at_exit{print error}
+      exit
+    end
+  end
+
 end

@@ -9,11 +9,15 @@ class GetAllRecordsInTimeIntervalAndCount
   helpers = Helpers.new
   puts "Enter Start Time:"
   start_time = gets.chomp
+  start_time = helpers.shift_date(start_time).to_time.to_i
+
+  helpers.stop_if_date_before_epoch_time(start_time)
+
   puts "Enter End Time:"
   end_time = gets.chomp
-
-  start_time = helpers.shift_date(start_time).to_time.to_i
   end_time = helpers.shift_date(end_time).to_time.to_i
+
+  helpers.stop_if_date_before_epoch_time(end_time)
 
   all_outputs = helpers.generate_requests_and_get_all_outputs(start_time, end_time)
 
