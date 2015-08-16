@@ -57,7 +57,8 @@ class Helpers
     return time_hash
   end
 
-  def shift_date(time_hash)
+  def shift_date(time)
+    time_hash = self.generate_time_hash(time)
     date = DateTime.now
     months_shift = self.get_months(time_hash)
     days_shift = self.get_days(time_hash)
@@ -86,6 +87,16 @@ class Helpers
       minutes = time_hash["minute"].to_i
     end
     return minutes
+  end
+
+  def generate_requests_and_get_all_outputs(start_time_unix, end_time_unix)
+    all_outputs = ""
+    (start_time_unix..end_time_unix).step(60) do |i|
+      beacon_record_by_timestamp = BeaconRecordByTimeStamp.new(i)
+      puts "request for time #{i} completed"
+      all_outputs << beacon_record_by_timestamp.get_output_value
+    end
+    return all_outputs
   end
 
 end

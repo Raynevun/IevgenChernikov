@@ -9,5 +9,9 @@ class Requests
     Net::HTTP.get_response(URI("https://beacon.nist.gov/rest/record/last"))
   end
 
+  def get_beacon_record_by_timestamp(timestamp)
+    Net::HTTP.get_response(URI("https://beacon.nist.gov/rest/record/#{timestamp}"))
+  end
+
 
 end
