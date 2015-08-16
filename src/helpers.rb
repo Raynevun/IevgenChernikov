@@ -26,4 +26,66 @@ class Helpers
     end
   end
 
+  def get_months(time_hash)
+    if time_hash["month"].to_i == 0
+      months = time_hash["months"].to_i
+    else
+      months = time_hash["month"].to_i
+    end
+    return months
+  end
+
+  def get_days(time_hash)
+    if time_hash["day"].to_i == 0
+      days = time_hash["days"].to_i
+    else
+      days = time_hash["day"].to_i
+    end
+    return days
+  end
+
+  def generate_time_hash(time)
+    time_hash = Hash.new
+    time = time.split()
+    time.delete("ago")
+    amount = time.size
+    for i in 0..amount-1
+      if i % 2 == 0
+        time_hash[time[i+1]] = time[i]
+      end
+    end
+    return time_hash
+  end
+
+  def shift_date(time_hash)
+    date = DateTime.now
+    months_shift = self.get_months(time_hash)
+    days_shift = self.get_days(time_hash)
+    hours_shift = self.get_hours(time_hash)
+    minutes_shift = self.get_minutes(time_hash)
+    date = date << months_shift
+    date = date - days_shift
+    date = date - hours_shift.to_f/24
+    date = date - minutes_shift.to_f/(24*60)
+    return date
+  end
+
+  def get_hours(time_hash)
+    if time_hash["hour"].to_i == 0
+      hours = time_hash["hours"].to_i
+    else
+      hours = time_hash["hour"].to_i
+    end
+    return hours
+  end
+
+  def get_minutes(time_hash)
+    if time_hash["minute"].to_i == 0
+      minutes = time_hash["minutes"].to_i
+    else
+      minutes = time_hash["minute"].to_i
+    end
+    return minutes
+  end
+
 end
