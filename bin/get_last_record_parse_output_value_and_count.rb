@@ -1,7 +1,7 @@
 require '../bin/helpers'
 require '../bin/api_entities/last_beacon_record'
 
-class GetLastRecordParseOutputValueAndSort
+class GetLastRecordParseOutputValueAndCount
   helpers = Helpers.new
   last_beacon_record = LastBeaconRecord.new
   output_value = last_beacon_record.get_output_value
